@@ -29,6 +29,7 @@
             --white-2:   #cbd5e1;
             --white-3:   #94a3b8;
             --white-4:   #64748b;
+            --black-text: #ffffff;
 
             /* Accent — Purple/Violet */
             --gold:      #9333ea;
@@ -44,6 +45,51 @@
             --border:    rgba(255,255,255,0.06);
             --border-h:  rgba(147, 51, 234, 0.35);
             --border-gold: rgba(147, 51, 234, 0.25);
+
+            /* Component specifics */
+            --nav-bg: rgba(8,11,16,0.85);
+            --skill-bar-bg: rgba(255,255,255,0.06);
+            --shadow-strong: rgba(0,0,0,0.5);
+            --btn-text: #08090c;
+        }
+
+        [data-theme="light"] {
+            /* Backgrounds */
+            --bg-base:   #f8fafc;
+            --bg-card:   #ffffff;
+            --bg-card2:  #f1f5f9;
+            --bg-card3:  #e2e8f0;
+            --bg-card4:  #cbd5e1;
+            --bg-line:   #cbd5e1;
+
+            /* Text */
+            --white:     #0f172a;
+            --white-1:   #1e293b;
+            --white-2:   #334155;
+            --white-3:   #475569;
+            --white-4:   #64748b;
+            --black-text: #0f172a;
+
+            /* Accent — Purple/Violet */
+            --gold:      #7e22ce;
+            --gold-light:#9333ea;
+            --gold-dim:  rgba(147, 51, 234, 0.1);
+            --gold-glow: rgba(147, 51, 234, 0.2);
+
+            /* Blue accent */
+            --blue:      #0284c7;
+            --blue-dim:  rgba(2, 132, 199, 0.1);
+
+            /* Borders */
+            --border:    rgba(0,0,0,0.08);
+            --border-h:  rgba(147, 51, 234, 0.2);
+            --border-gold: rgba(147, 51, 234, 0.15);
+
+            /* Component specifics */
+            --nav-bg: rgba(255,255,255,0.85);
+            --skill-bar-bg: rgba(0,0,0,0.06);
+            --shadow-strong: rgba(0,0,0,0.08);
+            --btn-text: #ffffff;
         }
 
         html, body {
@@ -99,7 +145,7 @@
             display: flex; align-items: center; justify-content: space-between;
             border-bottom: 1px solid var(--border);
             backdrop-filter: blur(24px);
-            background: rgba(8,11,16,0.85);
+            background: var(--nav-bg);
             transition: all 0.3s ease;
         }
         .nav-logo {
@@ -129,9 +175,17 @@
         }
         .nav-links a:hover { color: var(--gold-light); }
         .nav-links a:hover::after { transform: scaleX(1); }
+        .theme-toggle {
+            background: none; border: none;
+            color: var(--white-3);
+            font-size: 1.2rem; cursor: none;
+            transition: color 0.3s;
+            display: flex; align-items: center;
+        }
+        .theme-toggle:hover { color: var(--gold-light); }
         .nav-cta {
             background: linear-gradient(135deg, var(--gold), var(--gold-light)) !important;
-            color: #08090c !important;
+            color: var(--btn-text) !important;
             padding: 0.5rem 1.5rem; border-radius: 100px;
             font-weight: 700 !important;
             transition: all 0.3s !important;
@@ -243,7 +297,7 @@
         .stat-num {
             font-family: 'Space Grotesk', sans-serif;
             font-size: 2rem; font-weight: 700;
-            color: #fff;
+            color: var(--black-text);
             line-height: 1;
         }
         .stat-label {
@@ -260,7 +314,7 @@
         .btn-primary {
             display: inline-flex; align-items: center; gap: 0.5rem;
             background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
-            color: #08090c;
+            color: var(--btn-text);
             padding: 0.875rem 2rem; border-radius: 100px;
             font-weight: 700; font-size: 0.9rem;
             text-decoration: none;
@@ -274,7 +328,7 @@
         }
         .btn-secondary {
             display: inline-flex; align-items: center; gap: 0.5rem;
-            border: 1px solid rgba(147, 51, 234, 0.5); color: #fff;
+            border: 1px solid rgba(147, 51, 234, 0.5); color: var(--black-text);
             padding: 0.875rem 2rem; border-radius: 10px;
             font-weight: 500; font-size: 0.85rem;
             text-decoration: none;
@@ -364,7 +418,7 @@
         /* Floating tag badges */
         .float-badge {
             position: absolute;
-            background: rgba(8,11,16,0.92);
+            background: var(--nav-bg);
             border: 1px solid var(--border-gold);
             border-radius: 12px;
             padding: 0.6rem 1rem;
@@ -374,7 +428,7 @@
             display: flex; align-items: center; gap: 0.5rem;
             animation: floatY 4s ease-in-out infinite;
             z-index: 3;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+            box-shadow: 0 4px 20px var(--shadow-strong);
         }
         .float-badge.b1 { top: 20px; right: -50px; animation-delay: 0s; }
         .float-badge.b2 { bottom: 80px; left: -60px; animation-delay: 1.5s; }
@@ -449,7 +503,7 @@
         #skills { padding: 7rem 6rem; }
         .skill-bar {
             width: 100%; height: 3px;
-            background: rgba(255,255,255,0.06);
+            background: var(--skill-bar-bg);
             border-radius: 3px; margin-top: 1rem;
             overflow: hidden;
         }
@@ -509,7 +563,7 @@
         .project-card:hover {
             border-color: var(--border-gold);
             transform: translateY(-8px);
-            box-shadow: 0 24px 60px rgba(0,0,0,0.5), 0 0 40px rgba(201,168,76,0.07);
+            box-shadow: 0 24px 60px var(--shadow-strong), 0 0 40px rgba(201,168,76,0.07);
             background: var(--bg-card2);
         }
         .project-num {
@@ -615,7 +669,7 @@
         }
         .contact-link.primary {
             background: linear-gradient(135deg, var(--gold), var(--gold-light));
-            color: #08090c;
+            color: var(--btn-text);
             border-color: transparent;
             font-weight: 700;
             box-shadow: 0 4px 24px var(--gold-glow);
@@ -688,7 +742,7 @@
         }
         .hamburger span {
             display: block; width: 24px; height: 2px;
-            background: #fff; border-radius: 2px;
+            background: var(--black-text); border-radius: 2px;
             transition: all 0.3s;
         }
         .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
@@ -721,7 +775,7 @@
         .skill-cat-card:hover {
             border-color: var(--border-gold);
             transform: translateY(-6px);
-            box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 30px rgba(201,168,76,0.06);
+            box-shadow: 0 20px 60px var(--shadow-strong), 0 0 30px rgba(201,168,76,0.06);
             background: var(--bg-card2);
         }
         .skill-cat-header {
@@ -740,7 +794,7 @@
         .skill-cat-title {
             font-family: 'Space Grotesk', sans-serif;
             font-size: 0.95rem; font-weight: 700;
-            color: #fff;
+            color: var(--black-text);
         }
         .skill-tag-list {
             list-style: none;
@@ -822,7 +876,7 @@
         .timeline-role {
             font-family: 'Space Grotesk', sans-serif;
             font-size: 1.2rem; font-weight: 700;
-            color: #fff; margin-bottom: 0.35rem;
+            color: var(--black-text); margin-bottom: 0.35rem;
         }
         .timeline-company {
             font-size: 0.8rem; color: var(--white-4);
@@ -882,7 +936,7 @@
         .tpoint-title {
             font-family: 'Space Grotesk', sans-serif;
             font-size: 0.9rem; font-weight: 600;
-            color: #fff; margin-bottom: 0.4rem;
+            color: var(--black-text); margin-bottom: 0.4rem;
         }
         .tpoint-desc {
             font-size: 0.82rem; color: var(--white-4);
@@ -916,7 +970,7 @@
             .hamburger { display: flex; }
             .nav-links {
                 position: fixed; top: 60px; left: 0; right: 0;
-                background: rgba(0,0,0,0.97);
+                background: var(--nav-bg);
                 backdrop-filter: blur(20px);
                 flex-direction: column;
                 padding: 2rem;
@@ -967,6 +1021,9 @@
             <a href="#projects">Projects</a>
             <a href="#contact">Contact</a>
             <a href="mailto:nishantsharma.97285@gmail.com" class="nav-cta">Hire Me</a>
+            <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Theme">
+                <i class="fa-solid fa-moon"></i>
+            </button>
         </div>
         <button class="hamburger" id="hamburger" aria-label="Menu">
             <span></span><span></span><span></span>
@@ -1180,7 +1237,7 @@
     </section>
 
     <!-- ===== STATS ===== -->
-    <section id="experience" style="padding:5rem 6rem;background:var(--black-2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
+    <section id="experience" style="padding:5rem 6rem;background:var(--bg-card);border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
         <div class="exp-grid">
             <div class="exp-card reveal">
                 <div class="exp-num" id="statExp">3.5<span>+</span></div>
@@ -1336,7 +1393,16 @@
                     Visit Live Site <i class="fa-solid fa-arrow-up-right-from-square"></i>
                 </a>
             </div>
-            <div class="project-card reveal reveal-delay-3" style="border-style:dashed;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;min-height:220px;">
+            <div class="project-card reveal reveal-delay-3">
+                <div class="project-num">06</div>
+                <div class="project-icon"><i class="fa-brands fa-whatsapp"></i></div>
+                <h3 class="project-name">WhatsApp AI CRM</h3>
+                <p class="project-desc">A robust WhatsApp Automation &amp; CRM platform supporting AI-powered smart replies, lead tracking, and real-time workflows. Built with PHP, Laravel &amp; Next.js.</p>
+                <a href="#contact" class="project-link">
+                    Private Project <i class="fa-solid fa-lock"></i>
+                </a>
+            </div>
+            <div class="project-card reveal reveal-delay-1" style="border-style:dashed;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;min-height:220px;">
                 <div style="font-size:2rem;margin-bottom:1rem;opacity:0.3">+</div>
                 <div class="project-name" style="color:var(--white-4);font-size:0.9rem">More Projects Available</div>
                 <p class="project-desc" style="margin-top:0.5rem;margin-bottom:1rem">Let's discuss your project requirements.</p>
@@ -1395,6 +1461,29 @@
     </footer>
 
     <script>
+        // ===== THEME TOGGLE =====
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const themeIcon = themeToggleBtn.querySelector('i');
+        const currentTheme = localStorage.getItem('theme') || 'dark';
+
+        if (currentTheme === 'light') {
+            document.documentElement.setAttribute('data-theme', 'light');
+            themeIcon.classList.replace('fa-moon', 'fa-sun');
+        }
+
+        themeToggleBtn.addEventListener('click', () => {
+            let theme = document.documentElement.getAttribute('data-theme');
+            if (theme === 'light') {
+                document.documentElement.removeAttribute('data-theme');
+                localStorage.setItem('theme', 'dark');
+                themeIcon.classList.replace('fa-sun', 'fa-moon');
+            } else {
+                document.documentElement.setAttribute('data-theme', 'light');
+                localStorage.setItem('theme', 'light');
+                themeIcon.classList.replace('fa-moon', 'fa-sun');
+            }
+        });
+
         // ===== CURSOR =====
         const cursor = document.getElementById('cursor');
         const follower = document.getElementById('follower');
