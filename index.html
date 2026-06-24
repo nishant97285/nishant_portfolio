@@ -10,7 +10,12 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
+    
+    <script src="data.js"></script>
+    <script>
+        // Populate basic text immediately before render if possible, 
+        // though deferring to end of body is safer for DOM elements.
+    </script>
     <style>
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -1461,6 +1466,68 @@
     </footer>
 
     <script>
+        // ===== POPULATE PERSONAL DATA =====
+        function populatePersonalData() {
+            if (typeof portfolioData === 'undefined') return;
+
+            document.title = portfolioData.metaTitle;
+            const metaDesc = document.querySelector('meta[name="description"]');
+            if (metaDesc) metaDesc.content = portfolioData.metaDescription;
+
+            document.querySelectorAll('a[href^="mailto:"]').forEach(a => {
+                a.href = `mailto:${portfolioData.email}`;
+                if (a.innerHTML.includes('nishantsharma.97285@gmail.com')) {
+                    a.innerHTML = `<i class="fa-solid fa-envelope"></i> ${portfolioData.email}`;
+                }
+            });
+
+            document.querySelectorAll('a[href^="tel:"]').forEach(a => {
+                a.href = `tel:${portfolioData.phoneLink}`;
+                if (a.innerHTML.includes('+91 9728597671')) {
+                    a.innerHTML = `<i class="fa-solid fa-phone"></i> ${portfolioData.phoneDisplay}`;
+                }
+                if (a.title && a.title.includes('Call')) {
+                    a.title = `Call ${portfolioData.phoneDisplay}`;
+                }
+            });
+
+            document.querySelectorAll('a[href^="https://wa.me/"]').forEach(a => {
+                a.href = portfolioData.whatsappLink;
+            });
+
+            document.querySelectorAll('a[href*="linkedin.com"]').forEach(a => {
+                a.href = portfolioData.linkedinLink;
+            });
+
+            // Update stats
+            document.querySelectorAll('.stat-num, .exp-num').forEach(el => {
+                if (el.innerHTML.includes('80')) {
+                    el.innerHTML = el.innerHTML.replace('80', portfolioData.projectsDone);
+                }
+                if (el.innerHTML.includes('10')) {
+                    el.innerHTML = el.innerHTML.replace('10', portfolioData.happyClients);
+                }
+            });
+
+            const heroName = document.querySelector('.hero-name');
+            if (heroName) {
+                heroName.innerHTML = `${portfolioData.firstName}<br><span class="outline-text">${portfolioData.lastName}</span>`;
+            }
+            const navLogo = document.querySelector('.nav-logo');
+            if (navLogo) {
+                navLogo.innerHTML = `${portfolioData.firstName[0]}${portfolioData.lastName[0]}<span>.</span>`;
+            }
+            const footerLogo = document.querySelector('.footer-logo');
+            if (footerLogo) {
+                footerLogo.textContent = `${portfolioData.firstName} ${portfolioData.lastName}`;
+            }
+            const heroTitle = document.querySelector('.hero-title');
+            if (heroTitle) {
+                heroTitle.textContent = portfolioData.roleTitle;
+            }
+        }
+        populatePersonalData();
+
         // ===== THEME TOGGLE =====
         const themeToggleBtn = document.getElementById('theme-toggle');
         const themeIcon = themeToggleBtn.querySelector('i');
@@ -1561,11 +1628,12 @@
 
         function typeEffect() {
             const current = titles[tIdx];
+            const fullName = (typeof portfolioData !== 'undefined') ? `${portfolioData.firstName} ${portfolioData.lastName}` : 'Nishant Sharma';
             if (isDeleting) {
-                titleEl.textContent = current.substring(0, cIdx--) + ' & Nishant Sharma';
+                titleEl.textContent = current.substring(0, cIdx--) + ' & ' + fullName;
                 if (cIdx < 0) { isDeleting = false; tIdx = (tIdx + 1) % titles.length; }
             } else {
-                titleEl.textContent = current.substring(0, cIdx++) + ' & Nishant Sharma';
+                titleEl.textContent = current.substring(0, cIdx++) + ' & ' + fullName;
                 if (cIdx > current.length) { isDeleting = true; setTimeout(typeEffect, 1800); return; }
             }
             setTimeout(typeEffect, isDeleting ? 60 : 100);
@@ -1600,7 +1668,8 @@
 
         // ===== AUTO EXPERIENCE CALCULATOR =====
         function calcExperience() {
-            const start = new Date('2023-01-01');
+            const startDateStr = (typeof portfolioData !== 'undefined' && portfolioData.experienceStartDate) ? portfolioData.experienceStartDate : '2023-01-01';
+            const start = new Date(startDateStr);
             const now = new Date();
             const diffMs = now - start;
             const totalMonths = Math.floor(diffMs / (1000 * 60 * 60 * 24 * 30.4375));
