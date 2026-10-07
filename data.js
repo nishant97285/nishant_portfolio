@@ -2,8 +2,8 @@ const portfolioData = {
     // Personal Info
     firstName: "Nishant",
     lastName: "Sharma",
-    roleTitle: "Full Stack Developer & Laravel Expert",
-    aboutText: "A results-driven developer crafting high-performance web applications. I specialize in building scalable, clean-code solutions with PHP, Laravel, and modern JavaScript frameworks.",
+    roleTitle: "Freelance Web Developer in Hisar",
+    aboutText: "A results-driven freelance web developer based in Hisar, Haryana. I specialize in building custom websites, e-commerce solutions, and robust web applications using PHP, Laravel, and Next.js.",
 
     // Contact Info
     email: "nishantsharma.97285@gmail.com",
@@ -18,6 +18,6 @@ const portfolioData = {
     experienceStartDate: "2023-01-01",
 
     // SEO
-    metaTitle: "Nishant Sharma | Full Stack Web Developer",
-    metaDescription: "Nishant Sharma — Full Stack Web Developer with 3.5+ years of experience in PHP, Laravel, Next.js and modern web technologies."
+    metaTitle: "Nishant Sharma | Freelance Web Developer in Hisar | PHP, Laravel & Next.js",
+    metaDescription: "Hire Nishant Sharma, a Freelance Web Developer in Hisar, Haryana. Specializing in PHP, Laravel, Next.js, custom websites, e-commerce, and API integrations."
 };

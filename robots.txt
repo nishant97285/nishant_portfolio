@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://nishant97285.github.io/sitemap.xml
